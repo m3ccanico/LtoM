@@ -216,6 +216,9 @@ class Sheet(object):
     
     def plot_filename(self):
         return "{0:02d}.pdf".format(self.id)
+    
+    def plot_tiffname(self):
+        return "{0:02d}.tif".format(self.id)
 
 
 def str2bool(v):
@@ -249,9 +252,9 @@ def read_parameter(argv):
         
     logging.debug(args)
     
-    if not os.path.isfile(args.tiff):
-        print("TIFF file: '{}' does not exist!".format(args.tiff), file=sys.stderr)
-        sys.exit(EXIT_ERROR)
+    #if not os.path.isfile(args.tiff):
+    #    print("TIFF file: '{}' does not exist!".format(args.tiff), file=sys.stderr)
+    #    sys.exit(EXIT_ERROR)
     
     return args
 
@@ -271,7 +274,7 @@ def main(argv):
         sheet.plot_coordinates()
         sheet.plot_declination(22)
         merge += sheet.plot_filename() + " "
-        tidyup += sheet.plot_filename() + " "
+        tidyup += sheet.plot_filename() + " " + sheet.plot_tiffname() + " "
     # generate sheets
     merge += "map.pdf"
     
