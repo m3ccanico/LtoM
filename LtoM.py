@@ -272,7 +272,7 @@ def main(argv):
     for sheet in sheets:
         sheet.crop(args.tiff)
         sheet.plot_coordinates()
-        sheet.plot_declination(22)
+        sheet.plot_declination(21)
         merge += sheet.plot_filename() + " "
         tidyup += sheet.plot_filename() + " " + sheet.plot_tiffname() + " "
     # generate sheets
