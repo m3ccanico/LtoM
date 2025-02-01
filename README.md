@@ -1,6 +1,6 @@
 # LtoM
 
-Uses a line (defined by two coordinates) and generate A4 maps that cover the defined line.
+Uses a line (defined by two coordinates) and a Geo-TIFF file as the input. It then generates a script that cuts landscape A4 pages out along the line with some overlap between them, adds coordinates, and the declination.
 
 ## Run
 
