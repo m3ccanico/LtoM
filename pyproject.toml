@@ -1,0 +1,21 @@
+[project]
+name = "ltom"
+version = "0.1.0"
+description = "A script to generate A4 maps from TopoNZ"
+dependencies = [
+    "gdal==3.8.4",
+]
+requires-python = ">= 3.12"
+authors = [
+  {name = "Roman Ammann", email = "m3ccanico@xxo.ch"}
+]
+readme = "README.md"
+license = {text = "MIT License"}
+keywords = ["TopoNZ"]
+
+[dependency-groups]
+dev = []
+
+[project.urls]
+Homepage = "https://github.com/m3ccanico/gaia"
+Repository = "https://github.com/m3ccanico/gaia"

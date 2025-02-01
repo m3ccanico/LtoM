@@ -1,0 +1,61 @@
+# Build the development docker image outside of the container
+# $ colima start
+# $ docker build --pull --rm -f dockerfiles/Dockerfile.dev -t ltom:dev dockerfiles
+FROM ubuntu
+
+USER root
+
+ENV TZ=Australia/Sydney
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+
+# Use closest mirror and update packages
+
+RUN \
+    sed -i -e 's/archive/au.archive/' /etc/apt/sources.list && \
+    apt update && \
+    apt upgrade -y
+
+# Install and use zsh
+
+RUN \
+    apt install -y zsh && \
+    chsh -s /bin/zsh
+
+# Install common build dependencies
+
+RUN \
+    apt install -y software-properties-common && \
+    apt update && \
+    apt install -y git make build-essential libssl-dev zlib1g-dev \
+    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+    libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+    libffi-dev liblzma-dev zip unzip locales
+
+RUN \
+    locale-gen en_US.UTF-8
+
+# Install ohmyzsh
+
+RUN \
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#ADD $HOME/.zshrc /root/.zshrc
+
+# Install uv
+
+RUN \
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install GDAL, Tiff tools, and ImageMagick
+
+RUN \
+    apt-get install -y libgdal-dev gdal-bin python3-gdal libtiff-tools imagemagick
+
+ENV HOME=/root
+ENV PATH=/root/.local/bin:$PATH
+
+# Install appropriate Python version(s)
+
+RUN uv python install
+
+WORKDIR /root
