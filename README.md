@@ -1,8 +1,17 @@
 # LtoM
 
-Line to Map (LtoM) is a crude Python script that helps generation A4 maps based on the publically available Geo-TIFFs in New Zealand.
+Line to Map (LtoM) is a crude Python script that helps generation A4 maps based on the publicly available Geo-TIFFs in New Zealand.
 
 It uses a line (defined by two coordinates) and a Geo-TIFF file as the input to generates a shell script that cuts landscape A4 pages out along the line with some overlap between them, adds coordinates, and the declination.
+
+## Install Dependencies
+
+### macOS
+
+```sh
+brew install gdal
+brew install imagemagick
+```
 
 ## Run
 

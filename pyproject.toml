@@ -3,7 +3,7 @@ name = "ltom"
 version = "0.1.0"
 description = "A script to generate A4 maps from TopoNZ"
 dependencies = [
-    "gdal==3.8.4",
+    "gdal>=3.13.0",
 ]
 requires-python = ">= 3.12"
 authors = [

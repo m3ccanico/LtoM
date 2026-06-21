@@ -123,7 +123,7 @@ class Sheet(object):
     def crop(self, tiff):
         """Prints the command to crop a square defined by two coordinates from a GeoTIFF and converts it into a PDF"""
         print("gdalwarp -te {} {} {} {} {} {:02d}.tif".format(self.e1, self.n1, self.e2, self.n2, tiff, self.id))
-        print("tiff2pdf {0:02d}.tif -o {0:02d}.pdf".format(self.id))
+        print("tiff2pdf -o {0:02d}.pdf {0:02d}.tif".format(self.id))
     
     def plot_coordinates(self):
         
